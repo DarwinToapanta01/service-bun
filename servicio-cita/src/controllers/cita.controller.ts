@@ -13,11 +13,11 @@ export const obtenerCitaPorId = async(id: number) => {
 }
 
 export const crearCitas =async(data:any)=> {
-    const resPaciente = await fetch('http://localhost:3001/api/pacientes'+data.pacienteId)
+    const resPaciente = await fetch(`http://servicio-paciente:3001/api/pacientes/${data.pacienteId}`)
     if(!resPaciente.ok){
         throw new Error('Paciente no encontrado');
     }
-    const resMedico = await fetch('http://localhost:3002/api/medicos'+data.medicoId)
+    const resMedico = await fetch(`http://servicio-medico:3002/api/medicos/${data.medicoId}`)
     if(!resMedico.ok){
         throw new Error('Médico no encontrado');
     }
@@ -29,12 +29,12 @@ export const actualizarCita = async(id: number, data: any) => {
     if(!cita){
         throw new Error('Cita no encontrada');
     }
-    const resPaciente = await fetch('http://localhost:3001/api/pacientes'+data.pacienteId)
+    const resPaciente = await fetch(`http://servicio-paciente:3001/api/pacientes/${data.pacienteId}`)
 
     if(!resPaciente.ok){
         throw new Error('Paciente no encontrado');
     }
-    const resMedico = await fetch('http://localhost:3002/api/medicos'+data.medicoId)
+    const resMedico = await fetch(`http://servicio-medico:3002/api/medicos/${data.medicoId}`)
     if(!resMedico.ok){
         throw new Error('Médico no encontrado');
     }

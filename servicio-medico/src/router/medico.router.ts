@@ -1,4 +1,4 @@
-import type { errorCodes, FastifyInstance } from "fastify";
+import type { FastifyInstance } from "fastify";
 import { 
     crearMedico, 
     obtenerMedicos, 
@@ -10,28 +10,26 @@ import {
 export const medicoRouter = (app: FastifyInstance)=>{
     app.get("/medicos",obtenerMedicos);
     app.get("/medicos/:id", async(req, reply)=>{
-        try{    
+        try{
             const {id} = req.params as any;
             return await obtenerMedicosId(id);
-            reply.code(201).send({mensaje:"Registro Exitoso"})
         }catch(error){
             console.log(error);
             reply.code(404).send({error:"No se encontró médicos"})
         }
     });
-    app.post("/medico", async(req, reply)=>{
-        try{    
+    app.post("/medicos", async(req, reply)=>{
+        try{
             const medico = req.body;
             return await crearMedico(medico);
-            
         }catch(error){
             console.log(error);
-            reply.code(404).send({error:"No seha podido guardar médico"})
+            reply.code(404).send({error:"No se ha podido guardar médico"})
         }
     });
 
-    app.put("/medico/:id", async(req, reply)=>{
-        try{    
+    app.put("/medicos/:id", async(req, reply)=>{
+        try{
             const {id} = req.params as any;
             const medico = req.body;
             await actualizarMedico(id, medico);
@@ -42,10 +40,10 @@ export const medicoRouter = (app: FastifyInstance)=>{
         }
     });
 
-    app.delete("/medico/:id", async(req, reply)=>{
-        try{    
+    app.delete("/medicos/:id", async(req, reply)=>{
+        try{
             const {id} = req.params as any;
-            return await eliminarMedico(id);     
+            return await eliminarMedico(id);
         }catch(error){
             console.log(error);
             reply.code(404).send({error:"No se encontró médicos"})

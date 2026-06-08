@@ -9,10 +9,9 @@ import {
 export async function citaRouter(app: FastifyInstance) {
      app.get("/citas",obtenerCitas);
     app.get("/citas/:id", async(req, reply)=>{
-        try{    
+        try{
             const {id} = req.params as any;
             return await obtenerCitaPorId(id);
-            reply.code(201).send({mensaje:"Registro Exitoso"})
         }catch(error){
             console.log(error);
             reply.code(404).send({error:"No se encontró citas"})
